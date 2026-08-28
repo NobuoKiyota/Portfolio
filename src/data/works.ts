@@ -30,6 +30,13 @@ export const works: Work[] = [
     audioSrc: 'media/apps/MusicDemo/HardTechno2.mp3',
   },
   {
+    title: 'Orchestral Battle',
+    description:
+      '打楽器と金管を主軸にした疾走感のあるオーケストラ編成の戦闘BGMデモ。緊張感のある展開とダイナミックな盛り上がりを意識して制作。',
+    tags: ['Music', 'Orchestral'],
+    audioSrc: 'media/apps/MusicDemo/OrcheBattle.mp3',
+  },
+  {
     title: '近日公開',
     description: '新しい楽曲・映像を準備中です。',
     tags: [],

@@ -1,5 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionDots from '../components/SectionDots.astro';
+import SectionArrows from '../components/SectionArrows.astro';
+
+const sections = [
+  { id: 'profile-main', label: 'Profile' },
+  { id: 'profile-career', label: 'Career' },
+  { id: 'profile-skills', label: 'Skills' },
+  { id: 'profile-motto', label: 'Motto' },
+];
 ---
 
 <BaseLayout title="Profile" description="Nobuo Kiyota のプロフィール">
@@ -9,11 +18,84 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="monogram" aria-hidden="true">NK</div>
         <p class="eyebrow">Profile</p>
         <h1>Nobuo Kiyota</h1>
-        <p class="page-lead">プロフィールは準備中です。近日公開します。</p>
+        <p class="page-lead">
+          ゲーム・映像領域のサウンドクリエイター。効果音制作・作曲編曲からミドルウェア実装まで一貫して手掛けながら、近年はAIを活用したツール開発にも取り組んでいます。
+        </p>
         <p class="note">SNS・連絡先リンクは近日追加予定です。</p>
       </div>
     </section>
+
+    <section id="profile-career" class="snap-section section">
+      <div class="container">
+        <h2>Career</h2>
+        <ul class="profile-list">
+          <li>2003年、大学卒業後にゲーム音楽・サウンド制作会社へ入社し、現在まで在籍。</li>
+          <li>
+            Game Boy Advance世代からPS5世代まで、スマートフォンアプリを含め50タイトル以上で
+            効果音制作・作曲・編曲を担当。
+          </li>
+          <li>
+            近年はADX2 / Wwise / Unity / Unreal Engineを主戦場に、リソース制作にとどまらず
+            サウンド実装まで対応。
+          </li>
+          <li>
+            開発担当者と円滑に仕事を進められるよう、進行管理や希望以上の数量提案、資料の再調整、
+            サウンド専門家としての実装補助にも従事。
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="profile-skills" class="snap-section section">
+      <div class="container">
+        <h2>Skills</h2>
+
+        <div class="skill-group">
+          <p class="skill-group-label">制作・実装</p>
+          <ul class="skill-tags">
+            <li>効果音制作</li>
+            <li>作曲 / 編曲</li>
+            <li>ADX2</li>
+            <li>Wwise</li>
+            <li>Unity</li>
+            <li>Unreal Engine</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-label">映像・収録</p>
+          <ul class="skill-tags">
+            <li>動画MA</li>
+            <li>簡易動画編集</li>
+            <li>映画効果音(最長2時間尺)</li>
+            <li>短尺動画への音付け(数千本規模)</li>
+            <li>エレキギター演奏・収録</li>
+            <li>ボーカル / セリフ収録マニピュレーター</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-label">開発</p>
+          <ul class="skill-tags">
+            <li>AIアプリ開発</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="profile-motto" class="snap-section section">
+      <div class="container">
+        <h2>Motto</h2>
+        <p class="motto-quote">「現場が円滑に回るよう、コミュニケーションを第一に動くこと。」</p>
+        <p class="note">
+          近年はAIによるアプリ開発にも取り組み、制作現場がより仕事をしやすい環境になるような
+          ツールづくりに力を入れています。
+        </p>
+      </div>
+    </section>
   </div>
+  <SectionDots sections={sections} />
+  <SectionArrows sections={sections} />
 </BaseLayout>
 
 <style>
@@ -39,5 +121,67 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     max-width: 34rem;
     color: var(--color-text);
     font-style: italic;
+  }
+
+  .profile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    max-width: 40rem;
+  }
+
+  .profile-list li {
+    position: relative;
+    padding-left: 1.3rem;
+    color: var(--color-text);
+  }
+
+  .profile-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 0.4rem;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+  .skill-group {
+    margin-bottom: 1.75rem;
+  }
+
+  .skill-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .skill-group-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.65rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-tags li {
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent-soft);
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+  }
+
+  .motto-quote {
+    max-width: 36rem;
+    color: var(--color-text);
+    font-style: italic;
+    font-size: 1.15rem;
+    margin-bottom: 1.25rem;
   }
 </style>

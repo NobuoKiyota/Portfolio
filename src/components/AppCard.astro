@@ -11,6 +11,19 @@ const { app } = Astro.props;
 
 <article class="app-card">
   {
+    app.demoVideo && (
+      <div class="app-video">
+        <video
+          controls
+          preload="none"
+          poster={app.demoVideo.poster ? withBase(app.demoVideo.poster) : undefined}
+        >
+          <source src={withBase(app.demoVideo.src)} type="video/mp4" />
+        </video>
+      </div>
+    )
+  }
+  {
     app.screenshots && app.screenshots.length > 0 && (
       <div class="app-shots">
         {app.screenshots.map((src) => (
@@ -65,6 +78,17 @@ const { app } = Astro.props;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+  }
+
+  .app-video {
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+
+  .app-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .app-shots {

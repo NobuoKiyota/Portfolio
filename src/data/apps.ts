@@ -8,6 +8,11 @@ export interface AudioGroup {
   samples: AudioSample[];
 }
 
+export interface DemoVideo {
+  src: string;
+  poster?: string;
+}
+
 export interface AppItem {
   name: string;
   description: string;
@@ -16,6 +21,7 @@ export interface AppItem {
   note?: string;
   screenshots?: string[];
   audioGroups?: AudioGroup[];
+  demoVideo?: DemoVideo;
 }
 
 export const apps: AppItem[] = [
@@ -59,6 +65,10 @@ export const apps: AppItem[] = [
       '複数のレイヤーとLFO・ノイズジェネレーターを重ね合わせ、キーフレームタイムラインとバッチ生成機能で多彩なネオン・サイバーパンク調の映像エフェクトをリアルタイムに構築するブラウザ完結型のジェネレーティブ映像クリエイター。クロマキー合成しやすい単色背景での書き出しにも対応。',
     badge: '無料公開 検討中',
     link: 'https://github.com/NobuoKiyota/MovieCreator',
+    demoVideo: {
+      src: 'media/apps/MovieCreator/demo.mp4',
+      poster: 'media/apps/MovieCreator/demo-poster.jpg',
+    },
     screenshots: ['media/apps/MovieCreator/MovieCreator.png'],
   },
   {

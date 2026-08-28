@@ -1,0 +1,88 @@
+---
+import { withBase } from '../lib/url';
+
+const normalize = (path: string) => path.replace(/\/$/, '') || '/';
+const currentPath = normalize(Astro.url.pathname);
+
+const links = [
+  { href: withBase('works'), label: 'Works' },
+  { href: withBase('apps'), label: 'Apps' },
+  { href: withBase('profile'), label: 'Profile' },
+];
+---
+
+<header class="site-nav">
+  <div class="container nav-inner">
+    <a class="brand" href={withBase()} data-sound="click">Nobuo Kiyota</a>
+    <nav>
+      <ul>
+        {
+          links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                data-sound="hover"
+                class={currentPath === normalize(link.href) ? 'active' : ''}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-nav {
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(10, 10, 12, 0.85);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.1rem;
+    padding-bottom: 1.1rem;
+  }
+
+  .brand {
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    color: var(--color-text);
+    transition: color 0.2s ease;
+  }
+
+  .brand:hover {
+    color: var(--color-accent);
+  }
+
+  nav ul {
+    display: flex;
+    gap: 1.75rem;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.03em;
+    transition: color 0.2s ease;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid transparent;
+  }
+
+  nav a:hover {
+    color: var(--color-text);
+  }
+
+  nav a.active {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+  }
+</style>

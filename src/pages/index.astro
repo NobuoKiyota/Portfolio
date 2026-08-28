@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WorkCard from '../components/WorkCard.astro';
+import AppCard from '../components/AppCard.astro';
+import { works } from '../data/works';
+import { apps } from '../data/apps';
+import { withBase } from '../lib/url';
+
+const featuredWork = works.find((work) => !work.comingSoon);
+const featuredApps = apps.slice(0, 2);
+---
+
+<BaseLayout title="Home">
+  <section class="hero container">
+    <p class="eyebrow">Sound &amp; Visual Creator</p>
+    <h1>Nobuo Kiyota</h1>
+    <p class="hero-lead">
+      音楽・映像制作と、その制作を支えるAIツール開発を行っています。
+    </p>
+    <div class="hero-actions">
+      <a class="button" href={withBase('works')} data-sound="click">Works を見る</a>
+      <a class="button button-ghost" href={withBase('apps')} data-sound="click">Apps を見る</a>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="section-head">
+      <h2>Works</h2>
+      <a href={withBase('works')} data-sound="hover">すべて見る →</a>
+    </div>
+    {featuredWork && <WorkCard work={featuredWork} />}
+  </section>
+
+  <section class="container section">
+    <div class="section-head">
+      <h2>Apps</h2>
+      <a href={withBase('apps')} data-sound="hover">すべて見る →</a>
+    </div>
+    <div class="app-grid">
+      {featuredApps.map((app) => <AppCard app={app} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 5rem 1.5rem 3rem;
+  }
+
+  .hero-lead {
+    max-width: 34rem;
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+</style>

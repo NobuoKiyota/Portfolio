@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AppCard from '../components/AppCard.astro';
+import { apps } from '../data/apps';
+import { plugins, pluginsNote } from '../data/plugins';
+---
+
+<BaseLayout title="Apps" description="Nobuo Kiyota が開発するAIアプリ・ツール、VSTプラグイン">
+  <section class="container page-head">
+    <p class="eyebrow">Apps</p>
+    <h1>AIアプリ・ツール</h1>
+    <p class="page-lead">制作の裏側で使っている、自作のツール群です。</p>
+  </section>
+
+  <section class="container app-grid">
+    {apps.map((app) => <AppCard app={app} />)}
+  </section>
+
+  <section class="container section">
+    <div class="section-head">
+      <h2>VST Plugins</h2>
+    </div>
+    <ul class="plugin-list">
+      {plugins.map((name) => <li>{name}</li>)}
+    </ul>
+    <p class="plugin-note">{pluginsNote}</p>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding: 4rem 1.5rem 2.5rem;
+  }
+
+  .page-lead {
+    max-width: 34rem;
+    color: var(--color-text-muted);
+  }
+
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .plugin-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .plugin-list li {
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-elevated);
+    padding: 0.5rem 0.9rem;
+    font-size: 0.88rem;
+    letter-spacing: 0.02em;
+  }
+
+  .plugin-note {
+    color: var(--color-text-muted);
+    max-width: 40rem;
+    font-size: 0.92rem;
+  }
+</style>

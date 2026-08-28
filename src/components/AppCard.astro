@@ -1,0 +1,77 @@
+---
+import type { AppItem } from '../data/apps';
+
+interface Props {
+  app: AppItem;
+}
+
+const { app } = Astro.props;
+---
+
+<article class="app-card">
+  <div class="app-card-head">
+    <h3>{app.name}</h3>
+    {app.badge && <span class="badge">{app.badge}</span>}
+  </div>
+  <p>{app.description}</p>
+  <div class="app-card-foot">
+    {
+      app.link ? (
+        <a href={app.link} target="_blank" rel="noopener noreferrer" data-sound="click">
+          リポジトリを見る →
+        </a>
+      ) : (
+        <span class="note">{app.note}</span>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .app-card {
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-elevated);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .app-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .app-card-head h3 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  .badge {
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent-soft);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .app-card p {
+    color: var(--color-text-muted);
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .app-card-foot a {
+    font-size: 0.88rem;
+    color: var(--color-accent);
+    transition: opacity 0.2s ease;
+  }
+
+  .app-card-foot a:hover {
+    opacity: 0.75;
+  }
+</style>

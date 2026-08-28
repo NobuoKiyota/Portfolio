@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WorkCard from '../components/WorkCard.astro';
+import { works } from '../data/works';
+---
+
+<BaseLayout title="Works" description="Nobuo Kiyota の楽曲・映像作品">
+  <section class="container page-head">
+    <p class="eyebrow">Works</p>
+    <h1>楽曲・映像</h1>
+    <p class="page-lead">自主制作の映像と、その世界観に合わせて制作した楽曲を紹介します。</p>
+  </section>
+  <section class="container work-list">
+    {works.map((work) => <WorkCard work={work} />)}
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding: 4rem 1.5rem 2.5rem;
+  }
+
+  .page-lead {
+    max-width: 34rem;
+    color: var(--color-text-muted);
+  }
+
+  .work-list {
+    padding-bottom: 2rem;
+  }
+</style>

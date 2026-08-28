@@ -29,14 +29,12 @@ export const apps: AppItem[] = [
     name: 'MediaBay Lite',
     description:
       '大量の音声素材を高速に閲覧・整理するサンプルライブラリブラウザ。カラータグによる直感的な分類、波形プレビュー、Rate・Bit深度・チャンネルなどのメタ情報を一覧表示し、目的の音を瞬時に見つけ出せます。再生範囲やDAWへ受け渡す範囲も自由に指定可能。',
-    note: '準備中',
     screenshots: ['media/apps/AudioMediaBayLite/AudioMediaBayLite.jpg'],
   },
   {
     name: 'AI Drum Multitrack De-bleeder',
     description:
       '生ドラム収録のマルチトラックWAVをドラッグ&ドロップするだけで、AIモデルがキック・スネア・タム・ハイハット・ライド・クラッシュへ自動分離。マイクに回り込む他パートの音(かぶり)を除去し、ミックスしやすいクリーンな個別トラックを一括書き出しします。',
-    note: 'アプリ本体は準備中',
     screenshots: [
       'media/apps/drum-separator/drum-separator1.png',
       'media/apps/drum-separator/drum-separator2.png',
@@ -64,7 +62,6 @@ export const apps: AppItem[] = [
     description:
       '複数のレイヤーとLFO・ノイズジェネレーターを重ね合わせ、キーフレームタイムラインとバッチ生成機能で多彩なネオン・サイバーパンク調の映像エフェクトをリアルタイムに構築するブラウザ完結型のジェネレーティブ映像クリエイター。クロマキー合成しやすい単色背景での書き出しにも対応。',
     badge: '無料公開 検討中',
-    note: 'リポジトリは非公開',
     demoVideo: {
       src: 'media/apps/MovieCreator/demo.mp4',
       poster: 'media/apps/MovieCreator/demo-poster.jpg',
@@ -75,7 +72,6 @@ export const apps: AppItem[] = [
     name: 'Canvas Creator',
     description:
       'ジャンル(Fantasy/SF/Steampunk/和風/Gothicなど)、パターン、Ink・Neonなどの描画スタイルを組み合わせ、ゲームUI向けの装飾フレーム・ビネットを自動生成するツール。コーナー・辺・中央パーツを個別に調整し、自作シューティングゲームのUI背景づくりに実際に使用しています。',
-    note: 'ブラウザ対応を検討中',
     screenshots: [
       'media/apps/canvas_creator/canvas_creator.png',
       'media/apps/canvas-creator/sample-frame.png',
@@ -85,7 +81,6 @@ export const apps: AppItem[] = [
     name: 'DroneSound Generator',
     description:
       'MIDIの枠を超えた任意の周波数(10Hz〜10,000Hz)から直接音声合成する、ドローン・アンビエント特化のサウンドジェネレーター。ユニゾン・デチューンと倍音比率/振幅の手動設定で複雑な倍音構造を作り込め、コードクオリティやLFOスイープで持続的に表情を変化させるドローンサウンドを生成、WAV書き出しまで行えます。',
-    note: 'アプリ本体は準備中',
     screenshots: ['media/apps/drone-sound/DroneSoundGenerator_SS.png'],
     audioGroups: [
       {
@@ -101,7 +96,6 @@ export const apps: AppItem[] = [
     name: 'DynamicSpaceReverb',
     description:
       'ルームサイズ・ディケイ(RT60)・モジュレーション・周波数帯域ごとのダンピングに加え、入力信号に応じてリバーブ量を自動制御するダッキング機能まで備えた自作VSTリバーブ。ステレオ空間の広がりをスペクトログラムとリサージュ図形でリアルタイムに見ながら追い込めます。',
-    note: '自作VSTプラグイン',
     screenshots: ['media/apps/DynamicSpaceReverb/DynamicSpaceReverb.png'],
     audioGroups: [
       {
@@ -116,7 +110,6 @@ export const apps: AppItem[] = [
     name: 'HighSpeedSpectrumAnalyzer',
     description:
       'FFTサイズや周波数・dBレンジを自由に調整できる、高速描画のリアルタイム・スペクトログラム(ウォーターフォール表示)VST。ミックス内の周波数の動きを流れるように可視化し、帯域の被りや不要な共鳴を素早く見つけられます。',
-    note: '自作VSTプラグイン',
     screenshots: ['media/apps/HighSpeedSpectrumAnalyzer/HighSpeedSpectrumAnalyzer.png'],
   },
 ];

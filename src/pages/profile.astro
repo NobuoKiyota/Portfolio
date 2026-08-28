@@ -4,19 +4,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="Profile" description="Nobuo Kiyota のプロフィール">
   <div class="snap-container">
-    <section id="profile-main" class="snap-section container profile-head" data-decor="PROFILE">
-      <div class="monogram" aria-hidden="true">NK</div>
-      <p class="eyebrow">Profile</p>
-      <h1>Nobuo Kiyota</h1>
-      <p class="page-lead">プロフィールは準備中です。近日公開します。</p>
-      <p class="note">SNS・連絡先リンクは近日追加予定です。</p>
+    <section id="profile-main" class="snap-section profile-head" data-decor="PROFILE">
+      <div class="container">
+        <div class="monogram" aria-hidden="true">NK</div>
+        <p class="eyebrow">Profile</p>
+        <h1>Nobuo Kiyota</h1>
+        <p class="page-lead">プロフィールは準備中です。近日公開します。</p>
+        <p class="note">SNS・連絡先リンクは近日追加予定です。</p>
+      </div>
     </section>
   </div>
 </BaseLayout>
 
 <style>
   .profile-head {
-    padding: 2rem 1.5rem;
+    padding: 2rem 0;
   }
 
   .monogram {

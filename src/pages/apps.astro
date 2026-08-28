@@ -15,27 +15,33 @@ const sections = [
 
 <BaseLayout title="Apps" description="Nobuo Kiyota が開発するAIアプリ・ツール、VSTプラグイン">
   <div class="snap-container">
-    <section id="apps-intro" class="snap-section container page-head" data-decor="APPS">
-      <p class="eyebrow">Apps</p>
-      <h1>AIアプリ・ツール</h1>
-      <p class="page-lead">制作の裏側で使っている、自作のツール群です。</p>
+    <section id="apps-intro" class="snap-section page-head" data-decor="APPS">
+      <div class="container">
+        <p class="eyebrow">Apps</p>
+        <h1>AIアプリ・ツール</h1>
+        <p class="page-lead">制作の裏側で使っている、自作のツール群です。</p>
+      </div>
     </section>
 
     {
       apps.map((app, index) => (
-        <section id={`apps-${index}`} class="snap-section container app-item">
-          <div class="app-item-inner">
-            <AppCard app={app} />
+        <section id={`apps-${index}`} class="snap-section app-item">
+          <div class="container">
+            <div class="app-item-inner">
+              <AppCard app={app} />
+            </div>
           </div>
         </section>
       ))
     }
 
-    <section id="apps-plugins" class="snap-section container section">
-      <div class="section-head">
-        <h2>More</h2>
+    <section id="apps-plugins" class="snap-section section">
+      <div class="container">
+        <div class="section-head">
+          <h2>More</h2>
+        </div>
+        <p class="plugin-note">{pluginsNote}</p>
       </div>
-      <p class="plugin-note">{pluginsNote}</p>
     </section>
   </div>
   <SectionDots sections={sections} />

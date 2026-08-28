@@ -9,7 +9,7 @@ interface AmbientNodes {
 
 const SAMPLE_URLS: Record<TickVariant, string> = {
   'mouse-over': withBase('media/mouse-over.wav'),
-  decide: withBase('media/decied.wav'),
+  decide: withBase('media/decide.wav'),
 };
 
 const SAMPLE_GAIN: Record<TickVariant, number> = {

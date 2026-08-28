@@ -20,33 +20,39 @@ const sections = [
 
 <BaseLayout title="Home">
   <div class="snap-container">
-    <section id="home-hero" class="snap-section hero container" data-decor="NK">
-      <p class="eyebrow">Sound &amp; Visual Creator</p>
-      <h1>Nobuo Kiyota</h1>
-      <p class="hero-lead">
-        音楽・映像制作と、その制作を支えるAIツール開発を行っています。
-      </p>
-      <div class="hero-actions">
-        <a class="button" href={withBase('works')} data-sound="click">Works を見る</a>
-        <a class="button button-ghost" href={withBase('apps')} data-sound="click">Apps を見る</a>
+    <section id="home-hero" class="snap-section hero" data-decor="NK">
+      <div class="container">
+        <p class="eyebrow">Sound &amp; Visual Creator</p>
+        <h1>Nobuo Kiyota</h1>
+        <p class="hero-lead">
+          音楽・映像制作と、その制作を支えるAIツール開発を行っています。
+        </p>
+        <div class="hero-actions">
+          <a class="button" href={withBase('works')} data-sound="click">Works を見る</a>
+          <a class="button button-ghost" href={withBase('apps')} data-sound="click">Apps を見る</a>
+        </div>
       </div>
     </section>
 
-    <section id="home-works" class="snap-section container section">
-      <div class="section-head">
-        <h2>Works</h2>
-        <a href={withBase('works')} data-sound="hover">すべて見る →</a>
+    <section id="home-works" class="snap-section section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Works</h2>
+          <a href={withBase('works')} data-sound="hover">すべて見る →</a>
+        </div>
+        {featuredWork && <WorkCard work={featuredWork} />}
       </div>
-      {featuredWork && <WorkCard work={featuredWork} />}
     </section>
 
-    <section id="home-apps" class="snap-section container section">
-      <div class="section-head">
-        <h2>Apps</h2>
-        <a href={withBase('apps')} data-sound="hover">すべて見る →</a>
-      </div>
-      <div class="app-grid">
-        {featuredApps.map((app) => <AppCard app={app} />)}
+    <section id="home-apps" class="snap-section section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Apps</h2>
+          <a href={withBase('apps')} data-sound="hover">すべて見る →</a>
+        </div>
+        <div class="app-grid">
+          {featuredApps.map((app) => <AppCard app={app} />)}
+        </div>
       </div>
     </section>
   </div>
@@ -56,7 +62,7 @@ const sections = [
 
 <style>
   .hero {
-    padding: 2rem 1.5rem;
+    padding: 2rem 0;
   }
 
   .hero-lead {

@@ -13,15 +13,19 @@ const sections = [
 
 <BaseLayout title="Works" description="Nobuo Kiyota の楽曲・映像作品">
   <div class="snap-container">
-    <section id="works-intro" class="snap-section container page-head" data-decor="WORKS">
-      <p class="eyebrow">Works</p>
-      <h1>楽曲・映像</h1>
-      <p class="page-lead">自主制作の映像と、その世界観に合わせて制作した楽曲を紹介します。</p>
+    <section id="works-intro" class="snap-section page-head" data-decor="WORKS">
+      <div class="container">
+        <p class="eyebrow">Works</p>
+        <h1>楽曲・映像</h1>
+        <p class="page-lead">自主制作の映像と、その世界観に合わせて制作した楽曲を紹介します。</p>
+      </div>
     </section>
     {
       works.map((work, index) => (
-        <section id={`works-${index}`} class="snap-section container work-item">
-          <WorkCard work={work} />
+        <section id={`works-${index}`} class="snap-section work-item">
+          <div class="container">
+            <WorkCard work={work} />
+          </div>
         </section>
       ))
     }

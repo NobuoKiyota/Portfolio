@@ -1,5 +1,6 @@
 ---
 import type { Work } from '../data/works';
+import { withBase } from '../lib/url';
 
 interface Props {
   work: Work;
@@ -19,6 +20,11 @@ const { work } = Astro.props;
           allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
         />
+      </div>
+    ) : work.audioSrc ? (
+      <div class="work-embed work-embed-audio">
+        <span class="work-audio-label">AUDIO</span>
+        <audio controls preload="none" src={withBase(work.audioSrc)} />
       </div>
     ) : (
       <div class="work-embed work-embed-placeholder" aria-hidden="true">
@@ -61,6 +67,32 @@ const { work } = Astro.props;
     width: 100%;
     height: 100%;
     border: 0;
+  }
+
+  .work-embed-audio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: repeating-linear-gradient(
+      135deg,
+      var(--color-bg-elevated),
+      var(--color-bg-elevated) 10px,
+      #0f0f13 10px,
+      #0f0f13 20px
+    );
+  }
+
+  .work-audio-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.24em;
+    color: var(--color-accent);
+  }
+
+  .work-embed-audio audio {
+    width: 80%;
+    max-width: 26rem;
   }
 
   .work-embed-placeholder {

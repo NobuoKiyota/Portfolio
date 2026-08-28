@@ -58,6 +58,12 @@ function setupMediaReel(container: HTMLElement): void {
     });
   });
 
+  container.querySelectorAll<HTMLVideoElement>('video').forEach((video) => {
+    video.addEventListener('play', stopAuto);
+    video.addEventListener('pause', startAuto);
+    video.addEventListener('ended', startAuto);
+  });
+
   startAuto();
 }
 

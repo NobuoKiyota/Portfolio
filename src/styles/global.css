@@ -108,8 +108,9 @@ p {
 }
 
 .eyebrow {
-  font-size: 0.8rem;
-  letter-spacing: 0.18em;
+  font-size: clamp(1.15rem, 2.4vw, 1.7rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-accent);
   margin: 0 0 0.75rem;
@@ -248,6 +249,22 @@ main {
   line-height: 1;
   letter-spacing: 0;
   white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-head::after,
+.hero::after,
+.profile-head::after {
+  content: '';
+  position: absolute;
+  top: -12rem;
+  left: -8rem;
+  width: 28rem;
+  height: 28rem;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 68%);
+  opacity: 0.16;
+  filter: blur(6px);
   pointer-events: none;
   z-index: 0;
 }

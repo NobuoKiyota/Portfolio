@@ -1,31 +1,40 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import WorkCard from '../components/WorkCard.astro';
+import SectionDots from '../components/SectionDots.astro';
 import { works } from '../data/works';
+
+const sections = [
+  { id: 'works-intro', label: 'Intro' },
+  ...works.map((work, index) => ({ id: `works-${index}`, label: work.title })),
+];
 ---
 
 <BaseLayout title="Works" description="Nobuo Kiyota の楽曲・映像作品">
-  <section class="container page-head">
-    <p class="eyebrow">Works</p>
-    <h1>楽曲・映像</h1>
-    <p class="page-lead">自主制作の映像と、その世界観に合わせて制作した楽曲を紹介します。</p>
-  </section>
-  <section class="container work-list">
-    {works.map((work) => <WorkCard work={work} />)}
-  </section>
+  <div class="snap-container">
+    <section id="works-intro" class="snap-section container page-head">
+      <p class="eyebrow">Works</p>
+      <h1>楽曲・映像</h1>
+      <p class="page-lead">自主制作の映像と、その世界観に合わせて制作した楽曲を紹介します。</p>
+    </section>
+    {
+      works.map((work, index) => (
+        <section id={`works-${index}`} class="snap-section container work-item">
+          <WorkCard work={work} />
+        </section>
+      ))
+    }
+  </div>
+  <SectionDots sections={sections} />
 </BaseLayout>
 
 <style>
-  .page-head {
-    padding: 4rem 1.5rem 2.5rem;
-  }
-
   .page-lead {
     max-width: 34rem;
     color: var(--color-text-muted);
   }
 
-  .work-list {
-    padding-bottom: 2rem;
+  .work-item :global(.work-card) {
+    margin-bottom: 0;
   }
 </style>

@@ -24,7 +24,7 @@ const media: MediaSlide[] = [
       <div class="app-media" data-app-media>
         <div class="app-media-track">
           {media.map((slide, index) => (
-            <div class="app-media-slide" data-index={index} data-active={index === 0}>
+            <div class="app-media-slide" data-index={index}>
               {slide.type === 'video' ? (
                 <video
                   controls
@@ -113,22 +113,20 @@ const media: MediaSlide[] = [
 
   .app-media {
     position: relative;
+    overflow: hidden;
   }
 
   .app-media-track {
-    position: relative;
+    display: flex;
     aspect-ratio: 16 / 10;
     background: #000;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .app-media-slide {
-    display: none;
-    position: absolute;
-    inset: 0;
-  }
-
-  .app-media-slide[data-active='true'] {
-    display: block;
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
   }
 
   .app-media-slide video,

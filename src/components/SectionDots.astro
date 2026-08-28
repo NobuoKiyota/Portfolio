@@ -1,0 +1,33 @@
+---
+interface Section {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  sections: Section[];
+}
+
+const { sections } = Astro.props;
+---
+
+{
+  sections.length > 1 && (
+    <nav class="section-dots" data-section-dots aria-label="ページ内ナビゲーション">
+      {sections.map((section, index) => (
+        <a
+          href={`#${section.id}`}
+          class="section-dot"
+          data-index={index}
+          data-active={index === 0}
+          data-sound="click"
+          aria-label={section.label}
+        />
+      ))}
+    </nav>
+  )
+}
+
+<script>
+  import '../scripts/section-dots';
+</script>

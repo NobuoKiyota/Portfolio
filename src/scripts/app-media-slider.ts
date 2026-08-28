@@ -1,8 +1,10 @@
-function activate(container: Element, index: string): void {
+function activate(container: HTMLElement, index: string): void {
+  const track = container.querySelector<HTMLElement>('.app-media-track');
+  if (track) {
+    track.style.transform = `translateX(-${Number(index) * 100}%)`;
+  }
   container.querySelectorAll<HTMLElement>('.app-media-slide').forEach((slide) => {
-    const isActive = slide.dataset.index === index;
-    slide.dataset.active = String(isActive);
-    if (!isActive) {
+    if (slide.dataset.index !== index) {
       slide.querySelector('video')?.pause();
     }
   });

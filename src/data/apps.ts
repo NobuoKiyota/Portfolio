@@ -97,4 +97,26 @@ export const apps: AppItem[] = [
       },
     ],
   },
+  {
+    name: 'DynamicSpaceReverb',
+    description:
+      'ルームサイズ・ディケイ(RT60)・モジュレーション・周波数帯域ごとのダンピングに加え、入力信号に応じてリバーブ量を自動制御するダッキング機能まで備えた自作VSTリバーブ。ステレオ空間の広がりをスペクトログラムとリサージュ図形でリアルタイムに見ながら追い込めます。',
+    note: '自作VSTプラグイン',
+    screenshots: ['media/apps/DynamicSpaceReverb/DynamicSpaceReverb.png'],
+    audioGroups: [
+      {
+        samples: [
+          { label: 'Reverb Off', src: 'media/apps/DynamicSpaceReverb/DynamicSpaceReverbOff.mp3' },
+          { label: 'Reverb On', src: 'media/apps/DynamicSpaceReverb/DynamicSpaceReverbOn.mp3' },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'HighSpeedSpectrumAnalyzer',
+    description:
+      'FFTサイズや周波数・dBレンジを自由に調整できる、高速描画のリアルタイム・スペクトログラム(ウォーターフォール表示)VST。ミックス内の周波数の動きを流れるように可視化し、帯域の被りや不要な共鳴を素早く見つけられます。',
+    note: '自作VSTプラグイン',
+    screenshots: ['media/apps/HighSpeedSpectrumAnalyzer/HighSpeedSpectrumAnalyzer.png'],
+  },
 ];

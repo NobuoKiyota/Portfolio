@@ -2,6 +2,7 @@
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import SoundToggle from '../components/SoundToggle.astro';
+import Fireflies from '../components/Fireflies.astro';
 import { withBase } from '../lib/url';
 import '../styles/global.css';
 
@@ -35,6 +36,7 @@ const bgImage = `url(${withBase('media/site-bg.png')})`;
   </head>
   <body>
     <div class="site-bg" style={`background-image: ${bgImage};`} aria-hidden="true"></div>
+    <Fireflies />
     <Nav />
     <main>
       <slot />

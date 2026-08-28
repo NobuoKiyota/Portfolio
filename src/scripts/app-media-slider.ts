@@ -1,6 +1,5 @@
 const AUTO_ADVANCE_MS = 4000;
 const RESUME_DELAY_MS = 5000;
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function activate(container: HTMLElement, index: number): void {
   const track = container.querySelector<HTMLElement>('.app-media-track');
@@ -36,7 +35,6 @@ function setupMediaReel(container: HTMLElement): void {
   };
 
   const startAuto = () => {
-    if (prefersReducedMotion) return;
     stopAuto();
     autoTimer = window.setInterval(() => {
       currentIndex = (currentIndex + 1) % slideCount;

@@ -1,0 +1,72 @@
+---
+const COUNT = 24;
+
+const fireflies = Array.from({ length: COUNT }, (_, i) => {
+  const size = 2 + Math.random() * 5; // 2px - 7px
+  const top = Math.random() * 100;
+  const left = Math.random() * 100;
+  const duration = 7 + Math.random() * 9; // 7s - 16s
+  const delay = Math.random() * -16; // negative so they're mid-cycle on load
+  const driftX = -40 + Math.random() * 80; // -40px .. 40px
+  const driftY = -60 + Math.random() * 30; // -60px .. -30px (drift upward)
+  const minOpacity = 0.08 + Math.random() * 0.12;
+  const maxOpacity = 0.45 + Math.random() * 0.4;
+
+  return { key: i, size, top, left, duration, delay, driftX, driftY, minOpacity, maxOpacity };
+});
+---
+
+<div class="fireflies" aria-hidden="true">
+  {
+    fireflies.map((f) => (
+      <span
+        class="firefly"
+        style={`--size:${f.size}px; --top:${f.top}%; --left:${f.left}%; --duration:${f.duration}s; --delay:${f.delay}s; --drift-x:${f.driftX}px; --drift-y:${f.driftY}px; --min-o:${f.minOpacity}; --max-o:${f.maxOpacity};`}
+      />
+    ))
+  }
+</div>
+
+<style>
+  .fireflies {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .firefly {
+    position: absolute;
+    top: var(--top);
+    left: var(--left);
+    width: var(--size);
+    height: var(--size);
+    border-radius: 999px;
+    background: #ffffff;
+    box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.65);
+    opacity: var(--min-o);
+    animation: firefly-drift var(--duration) ease-in-out infinite;
+    animation-delay: var(--delay);
+    will-change: transform, opacity;
+  }
+
+  @keyframes firefly-drift {
+    0%,
+    100% {
+      transform: translate(0, 0);
+      opacity: var(--min-o);
+    }
+    50% {
+      transform: translate(var(--drift-x), var(--drift-y));
+      opacity: var(--max-o);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .firefly {
+      animation: none;
+      opacity: var(--max-o);
+    }
+  }
+</style>

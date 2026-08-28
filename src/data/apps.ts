@@ -20,15 +20,16 @@ export interface AppItem {
 
 export const apps: AppItem[] = [
   {
-    name: 'AudioAutoPlayer',
+    name: 'MediaBay Lite',
     description:
-      'wav素材検索エンジン。高速なエクスプローラに加え、自由なタグ付け、再生範囲やDAWへの流し込み範囲指定までを実装。',
+      '大量の音声素材を高速に閲覧・整理するサンプルライブラリブラウザ。カラータグによる直感的な分類、波形プレビュー、Rate・Bit深度・チャンネルなどのメタ情報を一覧表示し、目的の音を瞬時に見つけ出せます。再生範囲やDAWへ受け渡す範囲も自由に指定可能。',
     note: '準備中',
+    screenshots: ['media/apps/AudioMediaBayLite/AudioMediaBayLite.jpg'],
   },
   {
-    name: 'DrumSeparater',
+    name: 'AI Drum Multitrack De-bleeder',
     description:
-      '生ドラム収録特化のパート分離アプリ。生収録では各マイクに対象以外の音が混ざるため、キック・スネア・タムなど楽器ごとに分離します。',
+      '生ドラム収録のマルチトラックWAVをドラッグ&ドロップするだけで、AIモデルがキック・スネア・タム・ハイハット・ライド・クラッシュへ自動分離。マイクに回り込む他パートの音(かぶり)を除去し、ミックスしやすいクリーンな個別トラックを一括書き出しします。',
     note: 'アプリ本体は準備中',
     screenshots: [
       'media/apps/drum-separator/drum-separator1.png',
@@ -55,14 +56,15 @@ export const apps: AppItem[] = [
   {
     name: 'MovieEffectCreator',
     description:
-      'クロマキー処理しやすいよう背景色を単一化して出力しつつ、多種のパーティクルを演算し合わせて独特な動画エフェクトを生成するジェネレーティブ映像クリエイター。',
+      '複数のレイヤーとLFO・ノイズジェネレーターを重ね合わせ、キーフレームタイムラインとバッチ生成機能で多彩なネオン・サイバーパンク調の映像エフェクトをリアルタイムに構築するブラウザ完結型のジェネレーティブ映像クリエイター。クロマキー合成しやすい単色背景での書き出しにも対応。',
     badge: '無料公開 検討中',
     link: 'https://github.com/NobuoKiyota/MovieCreator',
+    screenshots: ['media/apps/MovieCreator/MovieCreator.png'],
   },
   {
     name: 'DroneSound Generator',
     description:
-      'MIDIでは扱いきれない周波数を直接音声合成し、複雑な倍音を加えることで独特なドローンサウンドを生成するアプリ。',
+      'MIDIの枠を超えた任意の周波数(10Hz〜10,000Hz)から直接音声合成する、ドローン・アンビエント特化のサウンドジェネレーター。ユニゾン・デチューンと倍音比率/振幅の手動設定で複雑な倍音構造を作り込め、コードクオリティやLFOスイープで持続的に表情を変化させるドローンサウンドを生成、WAV書き出しまで行えます。',
     note: 'アプリ本体は準備中',
     screenshots: ['media/apps/drone-sound/DroneSoundGenerator_SS.png'],
     audioGroups: [

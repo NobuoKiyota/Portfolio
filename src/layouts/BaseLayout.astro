@@ -14,6 +14,8 @@ const {
   title,
   description = 'サウンドクリエイター Nobuo Kiyota による、音楽・映像制作とAIアプリ開発のポートフォリオ',
 } = Astro.props;
+
+const bgImage = `url(${withBase('media/site-bg.png')})`;
 ---
 
 <!doctype html>
@@ -32,6 +34,7 @@ const {
     />
   </head>
   <body>
+    <div class="site-bg" style={`background-image: ${bgImage};`} aria-hidden="true"></div>
     <Nav />
     <main>
       <slot />
@@ -44,3 +47,16 @@ const {
     </script>
   </body>
 </html>
+
+<style>
+  .site-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+  }
+</style>

@@ -64,12 +64,22 @@ export const apps: AppItem[] = [
     description:
       '複数のレイヤーとLFO・ノイズジェネレーターを重ね合わせ、キーフレームタイムラインとバッチ生成機能で多彩なネオン・サイバーパンク調の映像エフェクトをリアルタイムに構築するブラウザ完結型のジェネレーティブ映像クリエイター。クロマキー合成しやすい単色背景での書き出しにも対応。',
     badge: '無料公開 検討中',
-    link: 'https://github.com/NobuoKiyota/MovieCreator',
+    note: 'リポジトリは非公開',
     demoVideo: {
       src: 'media/apps/MovieCreator/demo.mp4',
       poster: 'media/apps/MovieCreator/demo-poster.jpg',
     },
     screenshots: ['media/apps/MovieCreator/MovieCreator.png'],
+  },
+  {
+    name: 'Canvas Creator',
+    description:
+      'ジャンル(Fantasy/SF/Steampunk/和風/Gothicなど)、パターン、Ink・Neonなどの描画スタイルを組み合わせ、ゲームUI向けの装飾フレーム・ビネットを自動生成するツール。コーナー・辺・中央パーツを個別に調整し、自作シューティングゲームのUI背景づくりに実際に使用しています。',
+    note: 'ブラウザ対応を検討中',
+    screenshots: [
+      'media/apps/canvas_creator/canvas_creator.png',
+      'media/apps/canvas-creator/sample-frame.png',
+    ],
   },
   {
     name: 'DroneSound Generator',

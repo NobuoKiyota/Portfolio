@@ -7,28 +7,59 @@ interface Props {
 }
 
 const { app } = Astro.props;
+
+type MediaSlide =
+  | { type: 'video'; src: string; poster?: string }
+  | { type: 'image'; src: string };
+
+const media: MediaSlide[] = [
+  ...(app.demoVideo ? [{ type: 'video' as const, ...app.demoVideo }] : []),
+  ...(app.screenshots ?? []).map((src) => ({ type: 'image' as const, src })),
+];
 ---
 
 <article class="app-card">
   {
-    app.demoVideo && (
-      <div class="app-video">
-        <video
-          controls
-          preload="none"
-          poster={app.demoVideo.poster ? withBase(app.demoVideo.poster) : undefined}
-        >
-          <source src={withBase(app.demoVideo.src)} type="video/mp4" />
-        </video>
-      </div>
-    )
-  }
-  {
-    app.screenshots && app.screenshots.length > 0 && (
-      <div class="app-shots">
-        {app.screenshots.map((src) => (
-          <img src={withBase(src)} alt={`${app.name} スクリーンショット`} loading="lazy" />
-        ))}
+    media.length > 0 && (
+      <div class="app-media" data-app-media>
+        <div class="app-media-track">
+          {media.map((slide, index) => (
+            <div class="app-media-slide" data-index={index} data-active={index === 0}>
+              {slide.type === 'video' ? (
+                <video
+                  controls
+                  preload="none"
+                  poster={slide.poster ? withBase(slide.poster) : undefined}
+                >
+                  <source src={withBase(slide.src)} type="video/mp4" />
+                </video>
+              ) : (
+                <img
+                  src={withBase(slide.src)}
+                  alt={`${app.name} スクリーンショット ${media
+                    .slice(0, index + 1)
+                    .filter((m) => m.type === 'image').length}`}
+                  loading="lazy"
+                />
+              )}
+            </div>
+          ))}
+        </div>
+        {media.length > 1 && (
+          <div class="app-media-dots" role="tablist" aria-label={`${app.name} のメディア一覧`}>
+            {media.map((_, index) => (
+              <button
+                type="button"
+                class="app-media-dot"
+                data-index={index}
+                data-active={index === 0}
+                data-sound="click"
+                aria-label={`${index + 1}枚目を表示`}
+                aria-selected={index === 0}
+              />
+            ))}
+          </div>
+        )}
       </div>
     )
   }
@@ -80,29 +111,61 @@ const { app } = Astro.props;
     flex-direction: column;
   }
 
-  .app-video {
-    aspect-ratio: 16 / 9;
+  .app-media {
+    position: relative;
+  }
+
+  .app-media-track {
+    position: relative;
+    aspect-ratio: 16 / 10;
     background: #000;
   }
 
-  .app-video video {
+  .app-media-slide {
+    display: none;
+    position: absolute;
+    inset: 0;
+  }
+
+  .app-media-slide[data-active='true'] {
+    display: block;
+  }
+
+  .app-media-slide video,
+  .app-media-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  .app-shots {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1px;
-    background: var(--color-border);
+  .app-media-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.75rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
   }
 
-  .app-shots img {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    background: #000;
+  .app-media-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    padding: 0;
+    border-radius: 999px;
+    border: 1px solid rgba(233, 230, 224, 0.6);
+    background: rgba(10, 10, 12, 0.4);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .app-media-dot:hover {
+    transform: scale(1.15);
+  }
+
+  .app-media-dot[data-active='true'] {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
   }
 
   .app-card-body {
@@ -186,3 +249,7 @@ const { app } = Astro.props;
     opacity: 0.75;
   }
 </style>
+
+<script>
+  import '../scripts/app-media-slider';
+</script>

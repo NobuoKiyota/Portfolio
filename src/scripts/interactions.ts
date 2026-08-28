@@ -24,14 +24,14 @@ function setupSoundToggle(): void {
     localStorage.setItem(AMBIENT_STORAGE_KEY, next ? 'on' : 'off');
     resumed = true;
     audioManager.toggleAmbient(next);
-    audioManager.playTick('click');
+    audioManager.playTick('decide');
   });
 }
 
 function setupTickSounds(): void {
   document.querySelectorAll<HTMLElement>('[data-sound]').forEach((el) => {
-    el.addEventListener('mouseenter', () => audioManager.playTick('hover'));
-    el.addEventListener('click', () => audioManager.playTick('click'));
+    el.addEventListener('mouseenter', () => audioManager.playTick('mouse-over'));
+    el.addEventListener('click', () => audioManager.playTick('decide'));
   });
 }
 

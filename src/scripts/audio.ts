@@ -1,13 +1,27 @@
-type TickVariant = 'hover' | 'click';
+import { withBase } from '../lib/url';
+
+type TickVariant = 'mouse-over' | 'decide';
 
 interface AmbientNodes {
   oscillators: OscillatorNode[];
   masterGain: GainNode;
 }
 
+const SAMPLE_URLS: Record<TickVariant, string> = {
+  'mouse-over': withBase('media/mouse-over.wav'),
+  decide: withBase('media/decied.wav'),
+};
+
+const SAMPLE_GAIN: Record<TickVariant, number> = {
+  'mouse-over': 0.35,
+  decide: 0.5,
+};
+
 class AudioManager {
   private ctx: AudioContext | null = null;
   private ambient: AmbientNodes | null = null;
+  private buffers: Partial<Record<TickVariant, AudioBuffer>> = {};
+  private loading: Partial<Record<TickVariant, Promise<AudioBuffer>>> = {};
 
   private ensureContext(): AudioContext {
     if (!this.ctx) {
@@ -19,26 +33,39 @@ class AudioManager {
     return this.ctx;
   }
 
-  playTick(variant: TickVariant = 'click'): void {
+  private loadBuffer(ctx: AudioContext, variant: TickVariant): Promise<AudioBuffer> {
+    const cached = this.buffers[variant];
+    if (cached) return Promise.resolve(cached);
+
+    const pending = this.loading[variant];
+    if (pending) return pending;
+
+    const request = fetch(SAMPLE_URLS[variant])
+      .then((res) => res.arrayBuffer())
+      .then((data) => ctx.decodeAudioData(data))
+      .then((buffer) => {
+        this.buffers[variant] = buffer;
+        return buffer;
+      });
+
+    this.loading[variant] = request;
+    return request;
+  }
+
+  playTick(variant: TickVariant = 'decide'): void {
     const ctx = this.ensureContext();
-    const now = ctx.currentTime;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-
-    const freq = variant === 'click' ? 880 : 1320;
-    const peak = variant === 'click' ? 0.05 : 0.025;
-
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq, now);
-    osc.frequency.exponentialRampToValueAtTime(freq * 0.6, now + 0.12);
-
-    gain.gain.setValueAtTime(0, now);
-    gain.gain.linearRampToValueAtTime(peak, now + 0.005);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
-
-    osc.connect(gain).connect(ctx.destination);
-    osc.start(now);
-    osc.stop(now + 0.2);
+    this.loadBuffer(ctx, variant)
+      .then((buffer) => {
+        const source = ctx.createBufferSource();
+        source.buffer = buffer;
+        const gain = ctx.createGain();
+        gain.gain.value = SAMPLE_GAIN[variant];
+        source.connect(gain).connect(ctx.destination);
+        source.start();
+      })
+      .catch(() => {
+        // sample failed to load; fail silently rather than break the UI
+      });
   }
 
   toggleAmbient(on: boolean): void {

@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AppCard from '../components/AppCard.astro';
 import SectionDots from '../components/SectionDots.astro';
+import SectionArrows from '../components/SectionArrows.astro';
 import { apps } from '../data/apps';
 import { pluginsNote } from '../data/plugins';
 
@@ -38,6 +39,7 @@ const sections = [
     </section>
   </div>
   <SectionDots sections={sections} />
+  <SectionArrows sections={sections} />
 </BaseLayout>
 
 <style>

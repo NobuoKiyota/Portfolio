@@ -1,0 +1,39 @@
+---
+interface Section {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  sections: Section[];
+}
+
+const { sections } = Astro.props;
+---
+
+{
+  sections.length > 1 && (
+    <div class="section-arrows" data-section-arrows>
+      <button
+        type="button"
+        class="section-arrow section-arrow-prev"
+        data-sound="click"
+        aria-label="前のセクションへ"
+      >
+        <span class="arrow-shape" aria-hidden="true" />
+      </button>
+      <button
+        type="button"
+        class="section-arrow section-arrow-next"
+        data-sound="click"
+        aria-label="次のセクションへ"
+      >
+        <span class="arrow-shape" aria-hidden="true" />
+      </button>
+    </div>
+  )
+}
+
+<script>
+  import '../scripts/section-arrows';
+</script>

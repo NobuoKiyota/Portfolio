@@ -17,6 +17,9 @@ const {
 } = Astro.props;
 
 const bgImage = `url(${withBase('media/site-bg.png')})`;
+const pageTitle = `${title} | Nobuo Kiyota Portfolio`;
+const ogImage = new URL(withBase('media/og-image.png'), Astro.site).toString();
+const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -26,7 +29,21 @@ const bgImage = `url(${withBase('media/site-bg.png')})`;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
     <meta name="description" content={description} />
-    <title>{title} | Nobuo Kiyota Portfolio</title>
+    <title>{pageTitle}</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -43,10 +60,17 @@ const bgImage = `url(${withBase('media/site-bg.png')})`;
     </main>
     <Footer />
     <SoundToggle />
+    <div class="lightbox" data-lightbox-root hidden>
+      <button type="button" class="lightbox-close" data-sound="click" aria-label="拡大表示を閉じる">
+        ×
+      </button>
+      <img class="lightbox-img" alt="" />
+    </div>
     <script>
       import '../scripts/interactions';
       import '../scripts/horizontal-wheel';
       import '../scripts/section-autoplay';
+      import '../scripts/lightbox';
     </script>
   </body>
 </html>
@@ -61,5 +85,50 @@ const bgImage = `url(${withBase('media/site-bg.png')})`;
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0.5;
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(5, 5, 6, 0.92);
+    padding: 3rem 1.5rem;
+  }
+
+  .lightbox[hidden] {
+    display: none;
+  }
+
+  .lightbox-img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  }
+
+  .lightbox-close {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-bg-elevated);
+    color: var(--color-text);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .lightbox-close:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
   }
 </style>

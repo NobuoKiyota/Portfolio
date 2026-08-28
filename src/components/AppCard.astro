@@ -34,13 +34,23 @@ const media: MediaSlide[] = [
                   <source src={withBase(slide.src)} type="video/mp4" />
                 </video>
               ) : (
-                <img
-                  src={withBase(slide.src)}
-                  alt={`${app.name} スクリーンショット ${media
+                <button
+                  type="button"
+                  class="app-media-zoom"
+                  data-lightbox={withBase(slide.src)}
+                  data-lightbox-alt={`${app.name} スクリーンショット ${media
                     .slice(0, index + 1)
                     .filter((m) => m.type === 'image').length}`}
-                  loading="lazy"
-                />
+                  aria-label={`${app.name} スクリーンショット ${media
+                    .slice(0, index + 1)
+                    .filter((m) => m.type === 'image').length} を拡大表示`}
+                >
+                  <img
+                    src={withBase(slide.src)}
+                    alt=""
+                    loading="lazy"
+                  />
+                </button>
               )}
             </div>
           ))}
@@ -134,6 +144,16 @@ const media: MediaSlide[] = [
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .app-media-zoom {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
   }
 
   .app-media-dots {

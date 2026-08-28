@@ -22,7 +22,8 @@ const { work } = Astro.props;
         />
       </div>
     ) : work.audioSrc ? (
-      <div class="work-embed work-embed-audio">
+      <div class="work-embed work-embed-audio" data-work-spectrum>
+        <canvas class="work-spectrum-canvas" aria-hidden="true" />
         <span class="work-audio-label">AUDIO</span>
         <audio controls preload="none" src={withBase(work.audioSrc)} />
       </div>
@@ -70,27 +71,32 @@ const { work } = Astro.props;
   }
 
   .work-embed-audio {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    background: repeating-linear-gradient(
-      135deg,
-      var(--color-bg-elevated),
-      var(--color-bg-elevated) 10px,
-      #0f0f13 10px,
-      #0f0f13 20px
-    );
+    background: #050506;
+    overflow: hidden;
+  }
+
+  .work-spectrum-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .work-audio-label {
+    position: relative;
     font-size: 0.78rem;
     letter-spacing: 0.24em;
     color: var(--color-accent);
   }
 
   .work-embed-audio audio {
+    position: relative;
     width: 80%;
     max-width: 26rem;
   }
@@ -145,3 +151,7 @@ const { work } = Astro.props;
     opacity: 0.7;
   }
 </style>
+
+<script>
+  import '../scripts/work-spectrum';
+</script>
